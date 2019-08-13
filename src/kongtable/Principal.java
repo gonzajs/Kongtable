@@ -3,7 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package View;
+package kongtable;
+
+import View.CrearCliente;
+import View.MostrarTodos;
 
 /**
  *
@@ -16,6 +19,8 @@ public class Principal extends javax.swing.JFrame {
      */
     public Principal() {
         initComponents();
+        this.setLocationRelativeTo(null);
+        this.setResizable(false);
     }
 
     /**
@@ -37,11 +42,11 @@ public class Principal extends javax.swing.JFrame {
         itemCrearCliente = new javax.swing.JMenuItem();
         itemEditarCliente = new javax.swing.JMenuItem();
         itemEliminarCliente = new javax.swing.JMenuItem();
+        itemMostrarTodos = new javax.swing.JMenuItem();
         mnuLibroContable = new javax.swing.JMenu();
         itemImpuestoMensual = new javax.swing.JMenuItem();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setPreferredSize(new java.awt.Dimension(800, 600));
         setResizable(false);
 
         javax.swing.GroupLayout panelLayout = new javax.swing.GroupLayout(panel);
@@ -69,6 +74,11 @@ public class Principal extends javax.swing.JFrame {
         mnuCliente.add(jSeparator1);
 
         itemCrearCliente.setText("Crear Cliente");
+        itemCrearCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemCrearClienteActionPerformed(evt);
+            }
+        });
         mnuCliente.add(itemCrearCliente);
 
         itemEditarCliente.setText("Editar Cliente");
@@ -76,6 +86,14 @@ public class Principal extends javax.swing.JFrame {
 
         itemEliminarCliente.setText("Eliminar Cliente");
         mnuCliente.add(itemEliminarCliente);
+
+        itemMostrarTodos.setText("Mostrar Todos");
+        itemMostrarTodos.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemMostrarTodosActionPerformed(evt);
+            }
+        });
+        mnuCliente.add(itemMostrarTodos);
 
         jMenuBar1.add(mnuCliente);
 
@@ -101,6 +119,22 @@ public class Principal extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void itemCrearClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemCrearClienteActionPerformed
+        crearCliente = new CrearCliente();
+        panel.removeAll();
+        panel.repaint();
+        panel.add(crearCliente);
+        crearCliente.show();
+    }//GEN-LAST:event_itemCrearClienteActionPerformed
+
+    private void itemMostrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMostrarTodosActionPerformed
+        mTodos = new MostrarTodos();
+        panel.removeAll();
+        panel.repaint();
+        panel.add(mTodos);
+        mTodos.show();
+    }//GEN-LAST:event_itemMostrarTodosActionPerformed
 
     /**
      * @param args the command line arguments
@@ -128,7 +162,7 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -136,7 +170,8 @@ public class Principal extends javax.swing.JFrame {
             }
         });
     }
-
+    CrearCliente crearCliente;
+    MostrarTodos mTodos;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemBuscarCliente;
     private javax.swing.JMenuItem itemCrearCliente;
@@ -144,6 +179,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JMenuItem itemEliminarCliente;
     private javax.swing.JMenuItem itemGuardar;
     private javax.swing.JMenuItem itemImpuestoMensual;
+    private javax.swing.JMenuItem itemMostrarTodos;
     private javax.swing.JMenuBar jMenuBar1;
     private javax.swing.JPopupMenu.Separator jSeparator1;
     private javax.swing.JMenu mnuArchivo;
