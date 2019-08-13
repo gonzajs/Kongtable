@@ -35,6 +35,9 @@ public class MostrarTodos extends javax.swing.JInternalFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         tablaTodos = new javax.swing.JTable();
 
+        setClosable(true);
+        setResizable(true);
+        setTitle("Mostrar Registros");
         addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
             public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
             }

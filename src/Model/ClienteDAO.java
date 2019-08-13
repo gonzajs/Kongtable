@@ -34,7 +34,36 @@ public class ClienteDAO {
         return false;
     }
     
-    public ArrayList<Cliente> mostrarTodosClientes(){
+    public Cliente mostrarCliente(String rut){
+        Conector con = new Conector();
+        Cliente cliente = new Cliente();
+        conne = con.connect();
+        try {
+            PreparedStatement st = conne.prepareStatement("select * from cliente where rut = ?");
+            st.setString(1, rut);
+            ResultSet result = st.executeQuery();
+            while (result.next()) {
+                cliente.setRut(result.getString("rut"));
+                cliente.setNombre(result.getString("nombre"));
+                cliente.setGiro(result.getString("giro"));
+                cliente.setEmail(result.getString("email"));
+                cliente.setFono(result.getInt("fono"));
+                cliente.setDireccion(result.getString("direccion"));
+                cliente.setComuna(result.getString("comuna"));
+
+                System.out.println("Dato mostrado");
+                conne.close();
+                return cliente;
+            }
+            
+            
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return cliente;
+    }
+
+    public ArrayList<Cliente> mostrarTodosClientes() {
         Conector con = new Conector();
         ArrayList<Cliente> lista = new ArrayList<>();
         conne = con.connect();
@@ -60,5 +89,49 @@ public class ClienteDAO {
             System.err.println(ex.getMessage());
         }
         return lista;
+    }
+
+    public boolean editarCliente(Cliente cliente) {
+        Conector con = new Conector();
+        conne = con.connect();
+        String sql = "UPDATE cliente SET nombre = ?, giro = ?, "
+                + "email = ?, fono = ?, direccion = ?, comuna = ? "
+                + "WHERE rut = ?";
+        try {
+            PreparedStatement st = conne.prepareStatement(sql);
+            st.setString(1, cliente.getNombre());
+            st.setString(2, cliente.getGiro());
+            st.setString(3, cliente.getEmail());
+            st.setInt(4, cliente.getFono());
+            st.setString(5, cliente.getDireccion());
+            st.setString(6, cliente.getComuna());
+            
+            st.setString(7, cliente.getRut());
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Modificado exitósamente");
+            conne.close();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
+    }
+    
+    public boolean eliminarCliente(String rut){
+         Conector con = new Conector();
+        conne = con.connect();
+        String sql = "delete from cliente where rut = ?";
+        try {
+            PreparedStatement st = conne.prepareStatement(sql);
+            st.setString(1, rut);
+            
+            st.executeUpdate();
+            JOptionPane.showMessageDialog(null, "Eliminado exitósamente");
+            conne.close();
+            return true;
+        } catch (SQLException ex) {
+            System.err.println(ex.getMessage());
+        }
+        return false;
     }
 }

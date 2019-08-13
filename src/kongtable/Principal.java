@@ -6,6 +6,8 @@
 package kongtable;
 
 import View.CrearCliente;
+import View.EditarCliente;
+import View.EliminarCliente;
 import View.MostrarTodos;
 
 /**
@@ -70,6 +72,11 @@ public class Principal extends javax.swing.JFrame {
         mnuCliente.setText("Cliente");
 
         itemBuscarCliente.setText("Buscar Cliente");
+        itemBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemBuscarClienteActionPerformed(evt);
+            }
+        });
         mnuCliente.add(itemBuscarCliente);
         mnuCliente.add(jSeparator1);
 
@@ -82,9 +89,19 @@ public class Principal extends javax.swing.JFrame {
         mnuCliente.add(itemCrearCliente);
 
         itemEditarCliente.setText("Editar Cliente");
+        itemEditarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEditarClienteActionPerformed(evt);
+            }
+        });
         mnuCliente.add(itemEditarCliente);
 
         itemEliminarCliente.setText("Eliminar Cliente");
+        itemEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemEliminarClienteActionPerformed(evt);
+            }
+        });
         mnuCliente.add(itemEliminarCliente);
 
         itemMostrarTodos.setText("Mostrar Todos");
@@ -136,6 +153,26 @@ public class Principal extends javax.swing.JFrame {
         mTodos.show();
     }//GEN-LAST:event_itemMostrarTodosActionPerformed
 
+    private void itemEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarClienteActionPerformed
+        editCliente = new EditarCliente();
+        panel.removeAll();
+        panel.repaint();
+        panel.add(editCliente);
+        editCliente.show();
+    }//GEN-LAST:event_itemEditarClienteActionPerformed
+
+    private void itemEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEliminarClienteActionPerformed
+        elimCliente = new EliminarCliente();
+        panel.removeAll();
+        panel.repaint();
+        panel.add(elimCliente);
+        elimCliente.show();
+    }//GEN-LAST:event_itemEliminarClienteActionPerformed
+
+    private void itemBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBuscarClienteActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_itemBuscarClienteActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -172,6 +209,8 @@ public class Principal extends javax.swing.JFrame {
     }
     CrearCliente crearCliente;
     MostrarTodos mTodos;
+    EditarCliente editCliente;
+    EliminarCliente elimCliente;
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JMenuItem itemBuscarCliente;
     private javax.swing.JMenuItem itemCrearCliente;
