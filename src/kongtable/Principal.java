@@ -6,9 +6,10 @@
 package kongtable;
 
 import View.CrearCliente;
-import View.EditarCliente;
-import View.EliminarCliente;
+import View.BuscarCliente;
+import View.ImpuestoMensual;
 import View.MostrarTodos;
+import java.beans.PropertyVetoException;
 
 /**
  *
@@ -23,6 +24,8 @@ public class Principal extends javax.swing.JFrame {
         initComponents();
         this.setLocationRelativeTo(null);
         this.setResizable(false);
+        this.setExtendedState(Principal.MAXIMIZED_BOTH);
+        this.setVisible(true);
     }
 
     /**
@@ -39,11 +42,9 @@ public class Principal extends javax.swing.JFrame {
         mnuArchivo = new javax.swing.JMenu();
         itemGuardar = new javax.swing.JMenuItem();
         mnuCliente = new javax.swing.JMenu();
-        itemBuscarCliente = new javax.swing.JMenuItem();
-        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         itemCrearCliente = new javax.swing.JMenuItem();
         itemEditarCliente = new javax.swing.JMenuItem();
-        itemEliminarCliente = new javax.swing.JMenuItem();
+        jSeparator1 = new javax.swing.JPopupMenu.Separator();
         itemMostrarTodos = new javax.swing.JMenuItem();
         mnuLibroContable = new javax.swing.JMenu();
         itemImpuestoMensual = new javax.swing.JMenuItem();
@@ -71,15 +72,6 @@ public class Principal extends javax.swing.JFrame {
 
         mnuCliente.setText("Cliente");
 
-        itemBuscarCliente.setText("Buscar Cliente");
-        itemBuscarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemBuscarClienteActionPerformed(evt);
-            }
-        });
-        mnuCliente.add(itemBuscarCliente);
-        mnuCliente.add(jSeparator1);
-
         itemCrearCliente.setText("Crear Cliente");
         itemCrearCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -88,21 +80,14 @@ public class Principal extends javax.swing.JFrame {
         });
         mnuCliente.add(itemCrearCliente);
 
-        itemEditarCliente.setText("Editar Cliente");
+        itemEditarCliente.setText("Buscar Cliente");
         itemEditarCliente.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 itemEditarClienteActionPerformed(evt);
             }
         });
         mnuCliente.add(itemEditarCliente);
-
-        itemEliminarCliente.setText("Eliminar Cliente");
-        itemEliminarCliente.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                itemEliminarClienteActionPerformed(evt);
-            }
-        });
-        mnuCliente.add(itemEliminarCliente);
+        mnuCliente.add(jSeparator1);
 
         itemMostrarTodos.setText("Mostrar Todos");
         itemMostrarTodos.addActionListener(new java.awt.event.ActionListener() {
@@ -117,6 +102,11 @@ public class Principal extends javax.swing.JFrame {
         mnuLibroContable.setText("Libro Contable");
 
         itemImpuestoMensual.setText("Impuesto Mensual");
+        itemImpuestoMensual.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                itemImpuestoMensualActionPerformed(evt);
+            }
+        });
         mnuLibroContable.add(itemImpuestoMensual);
 
         jMenuBar1.add(mnuLibroContable);
@@ -143,6 +133,10 @@ public class Principal extends javax.swing.JFrame {
         panel.repaint();
         panel.add(crearCliente);
         crearCliente.show();
+        try {
+            crearCliente.setMaximum(true);
+        } catch (PropertyVetoException e) {
+        }
     }//GEN-LAST:event_itemCrearClienteActionPerformed
 
     private void itemMostrarTodosActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemMostrarTodosActionPerformed
@@ -151,27 +145,35 @@ public class Principal extends javax.swing.JFrame {
         panel.repaint();
         panel.add(mTodos);
         mTodos.show();
+        try {
+            mTodos.setMaximum(true);
+        } catch (PropertyVetoException e) {
+        }
     }//GEN-LAST:event_itemMostrarTodosActionPerformed
 
     private void itemEditarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEditarClienteActionPerformed
-        editCliente = new EditarCliente();
+        buscarCliente = new BuscarCliente();
         panel.removeAll();
         panel.repaint();
-        panel.add(editCliente);
-        editCliente.show();
+        panel.add(buscarCliente);
+        buscarCliente.show();
+        try {
+            buscarCliente.setMaximum(true);
+        } catch (PropertyVetoException e) {
+        }
     }//GEN-LAST:event_itemEditarClienteActionPerformed
 
-    private void itemEliminarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemEliminarClienteActionPerformed
-        elimCliente = new EliminarCliente();
+    private void itemImpuestoMensualActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemImpuestoMensualActionPerformed
+        impMensual = new ImpuestoMensual();
         panel.removeAll();
         panel.repaint();
-        panel.add(elimCliente);
-        elimCliente.show();
-    }//GEN-LAST:event_itemEliminarClienteActionPerformed
-
-    private void itemBuscarClienteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_itemBuscarClienteActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_itemBuscarClienteActionPerformed
+        panel.add(impMensual);
+        impMensual.show();
+        try {
+            impMensual.setMaximum(true);
+        } catch (PropertyVetoException e) {
+        }
+    }//GEN-LAST:event_itemImpuestoMensualActionPerformed
 
     /**
      * @param args the command line arguments
@@ -199,7 +201,7 @@ public class Principal extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(Principal.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-        
+
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
@@ -209,13 +211,11 @@ public class Principal extends javax.swing.JFrame {
     }
     CrearCliente crearCliente;
     MostrarTodos mTodos;
-    EditarCliente editCliente;
-    EliminarCliente elimCliente;
+    BuscarCliente buscarCliente;
+    ImpuestoMensual impMensual;
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JMenuItem itemBuscarCliente;
     private javax.swing.JMenuItem itemCrearCliente;
     private javax.swing.JMenuItem itemEditarCliente;
-    private javax.swing.JMenuItem itemEliminarCliente;
     private javax.swing.JMenuItem itemGuardar;
     private javax.swing.JMenuItem itemImpuestoMensual;
     private javax.swing.JMenuItem itemMostrarTodos;
