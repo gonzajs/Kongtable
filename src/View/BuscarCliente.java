@@ -7,20 +7,19 @@ package View;
 
 import Model.Cliente;
 import Model.ClienteDAO;
-//import javax.swing.plaf.basic.BasicInternalFrameUI;
+import javax.swing.JOptionPane;
 
 /**
  *
  * @author gplaza
  */
-public class CrearCliente extends javax.swing.JInternalFrame {
+public class BuscarCliente extends javax.swing.JInternalFrame {
 
     /**
-     * Creates new form CrearCliente
+     * Creates new form EditarCliente
      */
-    public CrearCliente() {
+    public BuscarCliente() {
         initComponents();
-        //((BasicInternalFrameUI) this.getUI()).setNorthPane(null);
     }
 
     /**
@@ -32,6 +31,9 @@ public class CrearCliente extends javax.swing.JInternalFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        btnModificar = new javax.swing.JButton();
+        btnLimpiar = new javax.swing.JButton();
+        btnBuscar = new javax.swing.JButton();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
@@ -47,25 +49,48 @@ public class CrearCliente extends javax.swing.JInternalFrame {
         txtTelefono = new javax.swing.JTextField();
         txtDireccion = new javax.swing.JTextField();
         boxComuna = new javax.swing.JComboBox();
-        btnGuardar = new javax.swing.JButton();
-        btnLimpiar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
 
         setBorder(null);
         setClosable(true);
-        setTitle("Crear Cliente/Empresa");
+        setTitle("Buscar Cliente/Empresa");
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
+        btnModificar.setText("Modificar");
+        btnModificar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnModificarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnModificar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 290, 226, -1));
+
+        btnLimpiar.setText("Limpiar");
+        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnLimpiarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(850, 290, -1, -1));
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        getContentPane().add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 80, 120, -1));
+
         jLabel1.setFont(new java.awt.Font("Tahoma", 1, 18)); // NOI18N
-        jLabel1.setText("Crear Cliente/Empresa");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 30, -1, -1));
+        jLabel1.setText("Buscar Cliente/Empresa");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(580, 20, -1, -1));
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setText("Run :");
-        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 120, -1, -1));
+        getContentPane().add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 80, -1, -1));
 
         jLabel3.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel3.setText("Razón social :");
-        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(610, 120, -1, -1));
+        getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 120, -1, -1));
 
         jLabel4.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel4.setText("Giro :");
@@ -86,10 +111,10 @@ public class CrearCliente extends javax.swing.JInternalFrame {
         jLabel8.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel8.setText("Comuna :");
         getContentPane().add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(790, 240, -1, -1));
-        getContentPane().add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 236, -1));
+        getContentPane().add(txtRut, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 80, 236, -1));
 
         txtNombre.setMaximumSize(new java.awt.Dimension(226, 226));
-        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(710, 120, 380, -1));
+        getContentPane().add(txtNombre, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 120, 380, -1));
 
         txtGiro.setMaximumSize(new java.awt.Dimension(226, 226));
         getContentPane().add(txtGiro, new org.netbeans.lib.awtextra.AbsoluteConstraints(350, 160, 740, -1));
@@ -104,33 +129,26 @@ public class CrearCliente extends javax.swing.JInternalFrame {
         boxComuna.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         getContentPane().add(boxComuna, new org.netbeans.lib.awtextra.AbsoluteConstraints(860, 240, 226, -1));
 
-        btnGuardar.setBackground(new java.awt.Color(153, 255, 153));
-        btnGuardar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
-        btnGuardar.setText("Registrar");
-        btnGuardar.addActionListener(new java.awt.event.ActionListener() {
+        btnEliminar.setBackground(new java.awt.Color(255, 0, 0));
+        btnEliminar.setFont(new java.awt.Font("Tahoma", 1, 14)); // NOI18N
+        btnEliminar.setForeground(new java.awt.Color(255, 255, 255));
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnGuardarActionPerformed(evt);
+                btnEliminarActionPerformed(evt);
             }
         });
-        getContentPane().add(btnGuardar, new org.netbeans.lib.awtextra.AbsoluteConstraints(550, 310, 226, -1));
-
-        btnLimpiar.setText("Limpiar");
-        btnLimpiar.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                btnLimpiarActionPerformed(evt);
-            }
-        });
-        getContentPane().add(btnLimpiar, new org.netbeans.lib.awtextra.AbsoluteConstraints(810, 310, -1, -1));
+        getContentPane().add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(590, 370, 230, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void btnGuardarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnGuardarActionPerformed
-        ClienteDAO clDao = new ClienteDAO();
-        Cliente cl1 = new Cliente(txtRut.getText(), txtNombre.getText(),
+    private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed
+        ClienteDAO clDaos = new ClienteDAO();
+        Cliente cl1s = new Cliente(txtRut.getText(), txtNombre.getText(),
                 txtGiro.getText(), txtCorreo.getText(), Integer.parseInt(txtTelefono.getText()),
                 txtDireccion.getText(), boxComuna.getSelectedItem().toString());
-        clDao.crearCliente(cl1);
+        clDaos.editarCliente(cl1s);
         txtRut.setText("");
         txtNombre.setText("");
         txtGiro.setText("");
@@ -138,7 +156,8 @@ public class CrearCliente extends javax.swing.JInternalFrame {
         txtDireccion.setText("");
         txtTelefono.setText("");
         boxComuna.setSelectedIndex(0);
-    }//GEN-LAST:event_btnGuardarActionPerformed
+        txtRut.setEnabled(true);
+    }//GEN-LAST:event_btnModificarActionPerformed
 
     private void btnLimpiarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnLimpiarActionPerformed
         txtRut.setText("");
@@ -148,13 +167,45 @@ public class CrearCliente extends javax.swing.JInternalFrame {
         txtDireccion.setText("");
         txtTelefono.setText("");
         boxComuna.setSelectedIndex(0);
+        txtRut.setEnabled(true);
     }//GEN-LAST:event_btnLimpiarActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        ClienteDAO clDao2 = new ClienteDAO();
+        Cliente client = clDao2.mostrarCliente(txtRut.getText());
+        txtRut.setText(client.getRut());
+        txtRut.setEnabled(false);
+        txtNombre.setText(client.getNombre());
+        txtGiro.setText(client.getGiro());
+        txtCorreo.setText(client.getEmail());
+        txtTelefono.setText(String.valueOf(client.getFono()));
+        txtDireccion.setText(client.getDireccion());
+        boxComuna.setSelectedItem(client.getComuna());
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        int confirm = JOptionPane.showConfirmDialog(null, "¿Realmente desea eliminar el registro?", "Eliminar", JOptionPane.YES_NO_OPTION, JOptionPane.QUESTION_MESSAGE);
+        if (confirm == 0) {
+            ClienteDAO clDao2 = new ClienteDAO();
+            clDao2.eliminarCliente(txtRut.getText());
+            txtRut.setEnabled(true);
+            txtRut.setText("");
+            txtNombre.setText("");
+            txtGiro.setText("");
+            txtCorreo.setText("");
+            txtTelefono.setText("");
+            txtDireccion.setText("");
+            boxComuna.setSelectedItem(0);
+        }
+    }//GEN-LAST:event_btnEliminarActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox boxComuna;
-    private javax.swing.JButton btnGuardar;
+    private javax.swing.JButton btnBuscar;
+    private javax.swing.JButton btnEliminar;
     private javax.swing.JButton btnLimpiar;
+    private javax.swing.JButton btnModificar;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

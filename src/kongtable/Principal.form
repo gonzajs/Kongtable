@@ -21,13 +21,6 @@
             <Property name="text" type="java.lang.String" value="Cliente"/>
           </Properties>
           <SubComponents>
-            <MenuItem class="javax.swing.JMenuItem" name="itemBuscarCliente">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Buscar Cliente"/>
-              </Properties>
-            </MenuItem>
-            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
-            </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemCrearCliente">
               <Properties>
                 <Property name="text" type="java.lang.String" value="Crear Cliente"/>
@@ -38,13 +31,13 @@
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemEditarCliente">
               <Properties>
-                <Property name="text" type="java.lang.String" value="Editar Cliente"/>
+                <Property name="text" type="java.lang.String" value="Buscar Cliente"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemEditarClienteActionPerformed"/>
+              </Events>
             </MenuItem>
-            <MenuItem class="javax.swing.JMenuItem" name="itemEliminarCliente">
-              <Properties>
-                <Property name="text" type="java.lang.String" value="Eliminar Cliente"/>
-              </Properties>
+            <MenuItem class="javax.swing.JPopupMenu$Separator" name="jSeparator1">
             </MenuItem>
             <MenuItem class="javax.swing.JMenuItem" name="itemMostrarTodos">
               <Properties>
@@ -65,6 +58,9 @@
               <Properties>
                 <Property name="text" type="java.lang.String" value="Impuesto Mensual"/>
               </Properties>
+              <Events>
+                <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="itemImpuestoMensualActionPerformed"/>
+              </Events>
             </MenuItem>
           </SubComponents>
         </Menu>
