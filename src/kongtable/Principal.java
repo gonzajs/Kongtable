@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package kongtable;
 
 import View.CrearCliente;
@@ -17,9 +13,6 @@ import java.beans.PropertyVetoException;
  */
 public class Principal extends javax.swing.JFrame {
 
-    /**
-     * Creates new form Principal
-     */
     public Principal() {
         initComponents();
         this.setLocationRelativeTo(null);
